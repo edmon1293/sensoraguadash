@@ -5,6 +5,7 @@ import plotly.graph_objs as go
 import firebase_admin
 from firebase_admin import credentials, db
 import time
+import os
 
 # Configura Firebase
 cred = credentials.Certificate("firebase_credentials.json")  # Reemplaza con tu archivo JSON de Firebase
@@ -64,4 +65,5 @@ def actualizar_grafico_dash(n):
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
-    app.run(debug=True, port=8050)
+    port = int(os.environ.get("PORT", 8050))  # Usar el puerto asignado por Render o 8050 por defecto
+    app.run(debug=False, host="0.0.0.0", port=port)
